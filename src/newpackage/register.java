@@ -116,18 +116,12 @@ public class register extends javax.swing.JFrame {
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
        
        
-        
-        String db_name="pingpong"; // ชื่อ database
-                         String user="root";
-                         String pass="";
-                         String hostName="localhost";
-                         String driverName="com.mysql.jdbc.Driver";
-         System.out.println("test");
+        ConnectDB db = new ConnectDB();
         
          try {
-            Class.forName(driverName);
-            String url="jdbc:mysql://"+hostName+"/"+db_name;
-            Connection con=DriverManager.getConnection(url,user,pass);
+            Class.forName(db.driverName);
+            
+            Connection con=DriverManager.getConnection(db.url,db.user,db.pass);
             System.err.println("ConnectComplete");
             
             Statement s = null; // ประกาศ statement
