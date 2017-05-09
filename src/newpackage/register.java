@@ -5,7 +5,11 @@
  */
 package newpackage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -110,7 +114,53 @@ public class register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
+       
+       
+        
+        String db_name="datauser"; // ชื่อ database
+                         String user="root";
+                         String pass="";
+                         String hostName="localhost";
+                         String driverName="com.mysql.jdbc.Driver";
+         System.out.println("test");
+        
+         try {
+            Class.forName(driverName);
+            String url="jdbc:mysql://"+hostName+"/"+db_name;
+            Connection con=DriverManager.getConnection(url,user,pass);
+            System.err.println("ConnectComplete");
+            
+            Statement s = null; // ประกาศ statement
+            s = con.createStatement();
+            /***********/
+            String sql = "INSERT INTO datauser "
+							+ "(name,lastname,username,password) "
+						        + "VALUES ('" + txt_username.getText() + "','"
+							+ field_password.getSelectedText()+ "','"
+							+ txt_name.getText() + "'" + ",'"
+							+ txt_surname.getText() + "'      ) ";
+					
+            
+            s.execute(sql);
+				
+					JOptionPane.showMessageDialog(null,"ทำรายการ Successfully");
+            
+             /*********/
+                                  
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+        
+                         
+         
+        
+        
+       
+        
+        
+        
+        
     }//GEN-LAST:event_submitActionPerformed
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
