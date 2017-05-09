@@ -5,13 +5,21 @@
  */
 package newpackage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author karn
  */
 public class user extends javax.swing.JFrame {
+
+   
 
     
     public user() {
@@ -42,6 +50,15 @@ public class user extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         tab_user.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tab_user.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tab_userAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setText("Kran Status : Save");
@@ -73,6 +90,15 @@ public class user extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tab_userAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tab_userAncestorAdded
+        
+      
+      ShowData(); // run  ฟังชัน ShowData();
+        
+        
+        
+    }//GEN-LAST:event_tab_userAncestorAdded
+
     
     public static void main(String args[]) {
         
@@ -81,11 +107,17 @@ public class user extends javax.swing.JFrame {
             public void run() {
                 new user().setVisible(true);
                 
+                
                     
             }
         });
         
         
+      
+         
+       
+         
+         
         
         
         
@@ -105,5 +137,92 @@ public class user extends javax.swing.JFrame {
     private void initComponentls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+   
+     public  void ShowData(){
+                                       
+            try {
+         
+            String sql = " select * from datauser ";
+            Connection c=connectDB();
+            ResultSet rs=c.createStatement().executeQuery(sql);
+            
+            rs.first();
+            datatoText(rs);
+                                  
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+                         
+    
+    }
+    
+  
+
+
+    public  static  Connection connectDB(){
+    
+        
+        String db_name="datauser"; // ชื่อ database
+                         String user="root";
+                         String pass="";
+                         String hostName="localhost";
+                         String driverName="com.mysql.jdbc.Driver";
+        
+    try{
+    
+    Class.forName(driverName);
+            String url="jdbc:mysql://"+hostName+"/"+db_name;
+            Connection con=DriverManager.getConnection(url,user,pass);
+            System.err.println("ConnectComplete");
+            
+            Statement s = null; // ประกาศ statement
+            s = con.createStatement();
+            
+           return con;
+    
+    } catch(Exception e){
+    
+    }
+        return null;
+    
+    }
+
+
+
+public  void datatoText(ResultSet rs){ // ฟังชั่นการ setค่า  ลงกล่องข้อความ
+    
+     try{
+    
+    jTextArea1.setText(rs.getString(1)); // การ setลงกล่องข้อความ
+    
+    } catch(Exception e){
+    
+    }
+     
 
 }
+
+
+
+
+
+}
+
+
+       
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+    
+    
+
+
