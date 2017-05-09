@@ -30,10 +30,10 @@ public class user extends javax.swing.JFrame {
     private void initComponents() {
 
         tab_user = new javax.swing.JTabbedPane();
-        tab_status = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        tab_status = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         label_title = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -43,18 +43,18 @@ public class user extends javax.swing.JFrame {
 
         tab_user.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jLabel1.setText("Kran Status : Save");
-        tab_status.add(jLabel1);
-
-        tab_user.addTab("Status", tab_status);
-
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jTextArea1.setRows(5);
         tab_suggestion.setViewportView(jTextArea1);
 
         tab_user.addTab("Suggestion", tab_suggestion);
+
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jLabel1.setText("Kran Status : Save");
+        tab_status.add(jLabel1);
+
+        tab_user.addTab("Status", tab_status);
 
         getContentPane().add(tab_user);
         tab_user.setBounds(30, 70, 830, 350);

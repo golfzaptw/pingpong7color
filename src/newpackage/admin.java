@@ -101,6 +101,7 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(txt_hba1c_2);
         txt_hba1c_2.setBounds(260, 200, 80, 30);
 
+        jCom_user.setBackground(new java.awt.Color(204, 0, 204));
         jCom_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jCom_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kran", "na", "ja", "ei", "eiz" }));
         jCom_user.addActionListener(new java.awt.event.ActionListener() {
