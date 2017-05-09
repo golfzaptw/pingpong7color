@@ -61,6 +61,11 @@ public class login extends javax.swing.JFrame {
 
         btn_login.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btn_login.setText("login");
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_login);
         btn_login.setBounds(440, 270, 140, 50);
 
@@ -102,11 +107,16 @@ public class login extends javax.swing.JFrame {
 
     private void bnt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_registerActionPerformed
         // TODO add your handling code here:
+        new register().setVisible(true);
     }//GEN-LAST:event_bnt_registerActionPerformed
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usernameActionPerformed
+
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     
     public static void main(String args[]) {
