@@ -173,6 +173,7 @@ public class admin extends javax.swing.JFrame {
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         //เมื่อกด submit
         pingpong test = new pingpong();
+        Color_sick c = new Color_sick();
         try {
             int fbs = Integer.parseInt(txt_fbs.getText());
             //รับเป็นเลขทศนิยมได้
@@ -188,8 +189,10 @@ public class admin extends javax.swing.JFrame {
             System.out.println("comment : " + comment);
 
             //ประกาศค่าสีเอาไว้ไห้ user 
-            String color_user = test.selectPingpong(fbs, hb_up, hb_down, hba1c);
-            show_status.setText(color_user);
+            int color_user = test.selectPingpong(fbs, hb_up, hb_down, hba1c);
+            show_status.setText(color_user+"");
+  
+            c.GetColor_sick(color_user, member_status);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error = " + e);

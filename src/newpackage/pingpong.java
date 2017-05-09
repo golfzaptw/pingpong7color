@@ -11,23 +11,27 @@ package newpackage;
  */
 public class pingpong {
 
-    public String selectPingpong(int fbs, int hb_up, int hb_down, double hba1c) {
+    public int selectPingpong(int fbs, int hb_up, int hb_down, double hba1c) {
         if (fbs >= 183 && hb_up >= 180
                 && hb_down >= 109 && hba1c >= 8.0) {
-            return "Red";
+            return 6; //แดง
+            
         } else if (fbs >= 155 && hb_up >= 160
                 && hb_down >= 100 && hba1c >= 7.0) {
-            return "Orange";
+            return 5; //ส้ม
+            
         } else if (fbs >= 125 && hb_up >= 140 
                 && hb_down >= 90 && hba1c < 7.0) {
-            return "Yellow";
+            return 4; //เหลือง
+            
         }else if (fbs >= 100 && hb_up >= 120 
                 && hb_down >= 80){
-            return "Green";
+            return 2; //เขียว
+            
         }else if(fbs < 100 && hb_up < 120 
                 && hb_down < 80){
-            return "White";
+            return 1; //ขาว
         }
-        return "Error";
+        return 0;
     }
 }
