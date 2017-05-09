@@ -49,6 +49,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(80, 70, 220, 270);
 
+        bnt_register.setBackground(new java.awt.Color(0, 153, 204));
         bnt_register.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         bnt_register.setText("Register");
         bnt_register.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +60,7 @@ public class login extends javax.swing.JFrame {
         getContentPane().add(bnt_register);
         bnt_register.setBounds(590, 270, 140, 50);
 
+        btn_login.setBackground(new java.awt.Color(0, 153, 204));
         btn_login.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         btn_login.setText("login");
         getContentPane().add(btn_login);
