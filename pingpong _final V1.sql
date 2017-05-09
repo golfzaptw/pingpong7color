@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2017 at 04:45 PM
+-- Generation Time: May 09, 2017 at 05:10 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -31,6 +31,14 @@ CREATE TABLE `role` (
   `name_role` varchar(50) COLLATE utf16_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name_role`) VALUES
+(1, 'user'),
+(2, 'doctor');
+
 -- --------------------------------------------------------
 
 --
@@ -39,9 +47,22 @@ CREATE TABLE `role` (
 
 CREATE TABLE `sick_ness` (
   `id` int(11) NOT NULL,
-  `sick_list` varchar(50) COLLATE utf16_unicode_ci DEFAULT NULL,
+  `sick_list` varchar(300) COLLATE utf16_unicode_ci DEFAULT NULL,
   `color` varchar(50) COLLATE utf16_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
+
+--
+-- Dumping data for table `sick_ness`
+--
+
+INSERT INTO `sick_ness` (`id`, `sick_list`, `color`) VALUES
+(1, 'ปกติ', 'white'),
+(2, 'กลุ่มเสี่ยงสูงต่อเบาหวานและความดันโลหิตสูง', 'green'),
+(3, 'กลุ่มป่วยระดับ0 ความคุมน้ำตาลและความดันโลหิต', 'strong green'),
+(4, 'กลุ่มป่วยระดับ1 (อ่อน)', 'yellow'),
+(5, 'กลุ่มป่วยระดับ2 (ปานกลาง)', 'orange'),
+(6, 'กลุ่มป่วยระดับ2 (รุนแรง)', 'red'),
+(7, 'มีโรคแทรกซ้อน', 'black');
 
 -- --------------------------------------------------------
 
@@ -91,12 +112,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `sick_ness`
 --
 ALTER TABLE `sick_ness`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user`
 --
@@ -107,16 +128,11 @@ ALTER TABLE `user`
 --
 
 --
--- Constraints for table `role`
+-- Constraints for table `user`
 --
-ALTER TABLE `role`
-  ADD CONSTRAINT `keyrole` FOREIGN KEY (`id`) REFERENCES `user` (`role`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Constraints for table `sick_ness`
---
-ALTER TABLE `sick_ness`
-  ADD CONSTRAINT `sickkey` FOREIGN KEY (`id`) REFERENCES `user` (`sick_type`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE `user`
+  ADD CONSTRAINT `role` FOREIGN KEY (`role`) REFERENCES `role` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `sick_type` FOREIGN KEY (`sick_type`) REFERENCES `sick_ness` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
