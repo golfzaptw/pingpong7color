@@ -6,6 +6,7 @@
 package newpackage;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,16 +14,14 @@ import javax.swing.JFrame;
  */
 public class admin extends javax.swing.JFrame {
 
-    
     public admin() {
         initComponents();
-               setResizable(false);
-        
-        
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(380, 10, 900, 500);
-                
-		setTitle("โปรแกรมลูกโปร่ง 7 สี");
+        setResizable(false);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(380, 10, 900, 500);
+
+        setTitle("โปรแกรมลูกโปร่ง 7 สี");
 
     }
 
@@ -31,11 +30,13 @@ public class admin extends javax.swing.JFrame {
 
         submit = new javax.swing.JButton();
         label_fbs = new javax.swing.JLabel();
+        label_fbs1 = new javax.swing.JLabel();
+        label_fbs2 = new javax.swing.JLabel();
         label_user = new javax.swing.JLabel();
         txt_hba1c = new javax.swing.JTextField();
         label_title = new javax.swing.JLabel();
         label_bp = new javax.swing.JLabel();
-        txt_bp = new javax.swing.JTextField();
+        txt_HBA1C = new javax.swing.JTextField();
         txt_hba1c_2 = new javax.swing.JTextField();
         jCom_user = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -44,7 +45,7 @@ public class admin extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_suggestion = new javax.swing.JTextArea();
         member_status = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        show_status = new javax.swing.JLabel();
         txt_fbs = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -69,6 +70,16 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(label_fbs);
         label_fbs.setBounds(100, 120, 40, 30);
 
+        label_fbs1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        label_fbs1.setText("mg / dL");
+        getContentPane().add(label_fbs1);
+        label_fbs1.setBounds(250, 120, 60, 30);
+
+        label_fbs2.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        label_fbs2.setText("mmHg");
+        getContentPane().add(label_fbs2);
+        label_fbs2.setBounds(360, 160, 60, 30);
+
         label_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         label_user.setText("Select User : ");
         getContentPane().add(label_user);
@@ -81,7 +92,7 @@ public class admin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_hba1c);
-        txt_hba1c.setBounds(150, 200, 80, 30);
+        txt_hba1c.setBounds(150, 160, 80, 30);
 
         label_title.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         label_title.setText("Admin");
@@ -93,15 +104,14 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(label_bp);
         label_bp.setBounds(110, 160, 40, 30);
 
-        txt_bp.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        getContentPane().add(txt_bp);
-        txt_bp.setBounds(150, 160, 80, 30);
+        txt_HBA1C.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        getContentPane().add(txt_HBA1C);
+        txt_HBA1C.setBounds(150, 200, 80, 30);
 
         txt_hba1c_2.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         getContentPane().add(txt_hba1c_2);
-        txt_hba1c_2.setBounds(260, 200, 80, 30);
+        txt_hba1c_2.setBounds(260, 160, 80, 30);
 
-        jCom_user.setBackground(new java.awt.Color(204, 0, 204));
         jCom_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jCom_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kran", "na", "ja", "ei", "eiz" }));
         jCom_user.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +125,7 @@ public class admin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel1.setText("/");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(240, 200, 10, 30);
+        jLabel1.setBounds(240, 160, 10, 30);
 
         label_hba1c.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         label_hba1c.setText("HbA1C :");
@@ -135,14 +145,19 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(150, 240, 300, 130);
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jLabel5.setText("Member Status");
-        member_status.add(jLabel5);
+        show_status.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        show_status.setText("Member Status");
+        member_status.add(show_status);
 
         getContentPane().add(member_status);
         member_status.setBounds(470, 30, 390, 390);
 
         txt_fbs.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        txt_fbs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_fbsActionPerformed(evt);
+            }
+        });
         getContentPane().add(txt_fbs);
         txt_fbs.setBounds(150, 120, 80, 30);
 
@@ -156,7 +171,34 @@ public class admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
-        // TODO add your handling code here:
+        //เมื่อกด submit
+        pingpong test = new pingpong();
+        try {
+            int fbs = Integer.parseInt(txt_fbs.getText());
+            //รับเป็นเลขทศนิยมได้
+            double hba1c = Double.parseDouble(txt_HBA1C.getText());
+            
+            int hb_up = Integer.parseInt(txt_hba1c.getText());
+            int hb_down = Integer.parseInt(txt_hba1c_2.getText());
+            String comment = txt_suggestion.getText();
+                        
+            System.out.println("FBS = " + fbs);
+            System.out.println("BP = " + hb_up + " / " + hb_down);
+            System.out.println("HBA1C = " + hba1c);
+            System.out.println("comment : " + comment);
+
+            //ประกาศค่าสีเอาไว้ไห้ user 
+            String color_user = test.selectPingpong(fbs, hb_up, hb_down, hba1c);
+            show_status.setText(color_user);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error = " + e);
+            txt_fbs.setText("");
+            txt_HBA1C.setText("");
+            txt_hba1c.setText("");
+            txt_hba1c_2.setText("");
+        }
+
     }//GEN-LAST:event_submitActionPerformed
 
     private void txt_hba1cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hba1cActionPerformed
@@ -167,40 +209,39 @@ public class admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCom_userActionPerformed
 
-    
+    private void txt_fbsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_fbsActionPerformed
+
+    }//GEN-LAST:event_txt_fbsActionPerformed
+
     public static void main(String args[]) {
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-            
+
             public void run() {
                 new admin().setVisible(true);
-                
-                    
+
             }
         });
-        
-        
-        
-        
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jCom_user;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_bp;
     private javax.swing.JLabel label_fbs;
+    private javax.swing.JLabel label_fbs1;
+    private javax.swing.JLabel label_fbs2;
     private javax.swing.JLabel label_hba1c;
     private javax.swing.JLabel label_suggestion;
     private javax.swing.JLabel label_title;
     private javax.swing.JLabel label_user;
     private javax.swing.JPanel member_status;
+    private javax.swing.JLabel show_status;
     private javax.swing.JButton submit;
-    private javax.swing.JTextField txt_bp;
+    private javax.swing.JTextField txt_HBA1C;
     private javax.swing.JTextField txt_fbs;
     private javax.swing.JTextField txt_hba1c;
     private javax.swing.JTextField txt_hba1c_2;
