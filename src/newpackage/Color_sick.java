@@ -31,5 +31,9 @@ public class Color_sick {
 			System.out.println("เกิดข้อผิดพลาด");
 		}
 	}
+
+    void GetColor_sick(String st, JPanel tab_status) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 }

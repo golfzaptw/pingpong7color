@@ -29,7 +29,25 @@ public class user extends javax.swing.JFrame {
 		setTitle("โปรแกรมลูกโปร่ง 7 สี"); 
                 AfterLogin afterLogin = new AfterLogin();
                 username_login.setText(afterLogin.getName());
-
+                
+                Color_sick cs = new Color_sick();
+                ShapeNColor sc = new ShapeNColor();
+                ConnectDB conn =new ConnectDB();
+                ResultSet rs;
+			rs = conn.SelectConnect("user WHERE name ='"+afterLogin.getName()+"'");
+			try {
+				while (rs.next()){
+				jTextArea1.setText(rs.getString("suggestion"));
+                                String st = rs.getString("sick_type");
+                               
+                                
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                
+                
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

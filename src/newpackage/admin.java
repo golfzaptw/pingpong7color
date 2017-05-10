@@ -10,8 +10,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import static newpackage.login.CheckLogin;
 
 /**
  *
@@ -19,7 +21,10 @@ import javax.swing.JOptionPane;
  */
 public class admin extends javax.swing.JFrame {
 
-    
+                Connection con;
+    Statement st;
+    ResultSet rs;
+    JComboBox jc = new JComboBox();
     public admin() {
         initComponents();
                setResizable(false);
@@ -47,10 +52,10 @@ public class admin extends javax.swing.JFrame {
         label_fbs2 = new javax.swing.JLabel();
         txt_hba1c = new javax.swing.JTextField();
         txt_hba1c_2 = new javax.swing.JTextField();
-        dropdown_user = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         label_hba1c = new javax.swing.JLabel();
         label_suggestion = new javax.swing.JLabel();
+        cbb_user = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_suggestion = new javax.swing.JTextArea();
         member_status = new javax.swing.JPanel();
@@ -125,16 +130,6 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(txt_hba1c_2);
         txt_hba1c_2.setBounds(260, 160, 80, 30);
 
-        dropdown_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        dropdown_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kran", "na", "ja", "ei", "eiz" }));
-        dropdown_user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dropdown_userActionPerformed(evt);
-            }
-        });
-        getContentPane().add(dropdown_user);
-        dropdown_user.setBounds(150, 70, 190, 40);
-
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel1.setText("/");
         getContentPane().add(jLabel1);
@@ -149,6 +144,14 @@ public class admin extends javax.swing.JFrame {
         label_suggestion.setText("Suggestion :");
         getContentPane().add(label_suggestion);
         label_suggestion.setBounds(50, 240, 90, 30);
+
+        cbb_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbb_userActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cbb_user);
+        cbb_user.setBounds(150, 70, 180, 40);
 
         txt_suggestion.setColumns(20);
         txt_suggestion.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
@@ -228,10 +231,11 @@ public class admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_HBA1CActionPerformed
 
-    private void dropdown_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdown_userActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_dropdown_userActionPerformed
+    private void cbb_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbb_userActionPerformed
+        // TODO add your handling code here:]
+        JComboBox cbb_user = new JComboBox();
+        
+    }//GEN-LAST:event_cbb_userActionPerformed
 
     
     public static void main(String args[]) {
@@ -239,21 +243,13 @@ public class admin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             
             public void run() {
-                new admin().setVisible(true);
-                
-                    
+                new admin().setVisible(true);       
             }
         });
-        
-        
-        
-        
-        
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> dropdown_user;
+    private javax.swing.JComboBox<String> cbb_user;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -279,5 +275,38 @@ public class admin extends javax.swing.JFrame {
     private void initComponentls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+private String nameInDatabase() throws SQLException{
+    String name;
+                ResultSet rs;
+			ConnectDB conn =new ConnectDB();
+			rs = conn.SelectConnect("user");
+			try {
+				while (rs.next()){
+					System.out.println("-----------------------------------");
+					System.out.println(rs.getString("name"));
+                                    if (rs.getString("role").equalsIgnoreCase("1")) {
+                                        JOptionPane.showMessageDialog(null,rs.getString("name")+" Login Successfully");
+                                        AfterLogin afterLogin = new AfterLogin();
+                                        afterLogin.setId(rs.getString("id"));
+                                        afterLogin.setName(rs.getString("name"));
+                                        new user().setVisible(true);
+                                        this.dispose();
+                                    }else {
+                                        JOptionPane.showMessageDialog(null,rs.getString("name")+" Admin Login Successfully");
+                                        AfterLogin afterLogin = new AfterLogin();
+                                        afterLogin.setId(rs.getString("id"));
+                                        afterLogin.setName(rs.getString("name"));
+                                        new admin().setVisible(true);
+                                        this.dispose();
+                                    }
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                
+            
+        
+        return rs.getString("name");
+    }
 }
