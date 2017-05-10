@@ -140,14 +140,14 @@ public class login extends javax.swing.JFrame {
                                     if (rs.getString("role").equalsIgnoreCase("1")) {
                                         JOptionPane.showMessageDialog(null,rs.getString("name")+" Login Successfully");
                                         AfterLogin afterLogin = new AfterLogin();
-                                        afterLogin.setUsername(rs.getString("username"));
+                                        afterLogin.setId(rs.getString("id"));
                                         afterLogin.setName(rs.getString("name"));
                                         new user().setVisible(true);
                                         this.dispose();
                                     }else {
                                         JOptionPane.showMessageDialog(null,rs.getString("name")+" Admin Login Successfully");
                                         AfterLogin afterLogin = new AfterLogin();
-                                        afterLogin.setUsername(rs.getString("username"));
+                                        afterLogin.setId(rs.getString("id"));
                                         afterLogin.setName(rs.getString("name"));
                                         new admin().setVisible(true);
                                         this.dispose();

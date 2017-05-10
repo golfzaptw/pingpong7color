@@ -10,15 +10,15 @@ package newpackage;
  * @author Dolphinz
  */
 public class AfterLogin {
-    public static String sUsername;
+    public static String sId;
     public static String sName;
     
     // Username
-    public void setUsername(String username){
-    	sUsername = username;
+    public void setId(String id){
+    	sId = id;
     }
-    public static String getUsername(){
-    	return sUsername;
+    public static String getId(){
+    	return sId;
     }
     
     // Name

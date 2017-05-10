@@ -5,7 +5,13 @@
  */
 package newpackage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,20 +39,22 @@ public class admin extends javax.swing.JFrame {
         submit = new javax.swing.JButton();
         label_fbs = new javax.swing.JLabel();
         label_user = new javax.swing.JLabel();
-        txt_hba1c = new javax.swing.JTextField();
+        txt_HBA1C = new javax.swing.JTextField();
         username_admin = new javax.swing.JLabel();
         label_title1 = new javax.swing.JLabel();
         label_bp = new javax.swing.JLabel();
-        txt_bp = new javax.swing.JTextField();
+        label_fbs1 = new javax.swing.JLabel();
+        label_fbs2 = new javax.swing.JLabel();
+        txt_hba1c = new javax.swing.JTextField();
         txt_hba1c_2 = new javax.swing.JTextField();
-        jCom_user = new javax.swing.JComboBox<>();
+        dropdown_user = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         label_hba1c = new javax.swing.JLabel();
         label_suggestion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txt_suggestion = new javax.swing.JTextArea();
         member_status = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
+        show_status = new javax.swing.JLabel();
         txt_fbs = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
@@ -76,14 +84,14 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(label_user);
         label_user.setBounds(50, 80, 110, 21);
 
-        txt_hba1c.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        txt_hba1c.addActionListener(new java.awt.event.ActionListener() {
+        txt_HBA1C.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        txt_HBA1C.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_hba1cActionPerformed(evt);
+                txt_HBA1CActionPerformed(evt);
             }
         });
-        getContentPane().add(txt_hba1c);
-        txt_hba1c.setBounds(150, 200, 80, 30);
+        getContentPane().add(txt_HBA1C);
+        txt_HBA1C.setBounds(150, 200, 80, 30);
 
         username_admin.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         getContentPane().add(username_admin);
@@ -99,28 +107,38 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(label_bp);
         label_bp.setBounds(110, 160, 40, 30);
 
-        txt_bp.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        getContentPane().add(txt_bp);
-        txt_bp.setBounds(150, 160, 80, 30);
+        label_fbs1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        label_fbs1.setText("mg / dL");
+        getContentPane().add(label_fbs1);
+        label_fbs1.setBounds(250, 120, 60, 30);
+
+        label_fbs2.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        label_fbs2.setText("mmHg");
+        getContentPane().add(label_fbs2);
+        label_fbs2.setBounds(360, 160, 60, 30);
+
+        txt_hba1c.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        getContentPane().add(txt_hba1c);
+        txt_hba1c.setBounds(150, 160, 80, 30);
 
         txt_hba1c_2.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         getContentPane().add(txt_hba1c_2);
-        txt_hba1c_2.setBounds(260, 200, 80, 30);
+        txt_hba1c_2.setBounds(260, 160, 80, 30);
 
-        jCom_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jCom_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kran", "na", "ja", "ei", "eiz" }));
-        jCom_user.addActionListener(new java.awt.event.ActionListener() {
+        dropdown_user.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        dropdown_user.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kran", "na", "ja", "ei", "eiz" }));
+        dropdown_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCom_userActionPerformed(evt);
+                dropdown_userActionPerformed(evt);
             }
         });
-        getContentPane().add(jCom_user);
-        jCom_user.setBounds(150, 70, 190, 40);
+        getContentPane().add(dropdown_user);
+        dropdown_user.setBounds(150, 70, 190, 40);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 36)); // NOI18N
         jLabel1.setText("/");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(240, 200, 10, 30);
+        jLabel1.setBounds(240, 160, 10, 30);
 
         label_hba1c.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         label_hba1c.setText("HbA1C :");
@@ -140,9 +158,9 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(150, 240, 300, 130);
 
-        jLabel5.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jLabel5.setText("Member Status");
-        member_status.add(jLabel5);
+        show_status.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        show_status.setText("Member Status");
+        member_status.add(show_status);
 
         getContentPane().add(member_status);
         member_status.setBounds(470, 30, 390, 390);
@@ -162,15 +180,58 @@ public class admin extends javax.swing.JFrame {
 
     private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         // TODO add your handling code here:
+               //เมื่อกด submit
+        pingpong test = new pingpong();
+        Color_sick c = new Color_sick();
+        try {
+            int fbs = Integer.parseInt(txt_fbs.getText());
+            //รับเป็นเลขทศนิยมได้
+            double hba1c = Double.parseDouble(txt_HBA1C.getText());
+            
+            int hb_up = Integer.parseInt(txt_HBA1C.getText());
+            int hb_down = Integer.parseInt(txt_hba1c_2.getText());
+            String comment = txt_suggestion.getText();
+                        
+            System.out.println("FBS = " + fbs);
+            System.out.println("BP = " + hb_up + " / " + hb_down);
+            System.out.println("HBA1C = " + hba1c);
+            System.out.println("comment : " + comment);
+
+            //ประกาศค่าสีเอาไว้ไห้ user 
+            int color_user = test.selectPingpong(fbs, hb_up, hb_down, hba1c);
+            show_status.setText(color_user+"");
+  
+            c.GetColor_sick(color_user, member_status);
+            
+            ConnectDB db = new ConnectDB();
+            AfterLogin afterLogin = new AfterLogin();
+            ResultSet rs;
+            rs = db.SelectConnect("user WHERE username ='"+afterLogin.getName()+"'");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong","root","");
+            Statement s = null; // ประกาศ statement
+            s = con.createStatement();
+            String sql = "update user set suggestion = "+txt_suggestion.getText()+" where id ="+afterLogin.getId(); 
+            s.execute(sql);
+            JOptionPane.showMessageDialog(null,"ทำรายการ Successfully");
+                
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error = " + e);
+            txt_fbs.setText("");
+            txt_HBA1C.setText("");
+            txt_HBA1C.setText("");
+            txt_hba1c_2.setText("");
+        }
+
     }//GEN-LAST:event_submitActionPerformed
 
-    private void txt_hba1cActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_hba1cActionPerformed
+    private void txt_HBA1CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_HBA1CActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_hba1cActionPerformed
+    }//GEN-LAST:event_txt_HBA1CActionPerformed
 
-    private void jCom_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCom_userActionPerformed
+    private void dropdown_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropdown_userActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCom_userActionPerformed
+
+    }//GEN-LAST:event_dropdown_userActionPerformed
 
     
     public static void main(String args[]) {
@@ -192,20 +253,22 @@ public class admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jCom_user;
+    private javax.swing.JComboBox<String> dropdown_user;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_bp;
     private javax.swing.JLabel label_fbs;
+    private javax.swing.JLabel label_fbs1;
+    private javax.swing.JLabel label_fbs2;
     private javax.swing.JLabel label_hba1c;
     private javax.swing.JLabel label_suggestion;
     private javax.swing.JLabel label_title1;
     private javax.swing.JLabel label_user;
     private javax.swing.JPanel member_status;
+    private javax.swing.JLabel show_status;
     private javax.swing.JButton submit;
-    private javax.swing.JTextField txt_bp;
+    private javax.swing.JTextField txt_HBA1C;
     private javax.swing.JTextField txt_fbs;
     private javax.swing.JTextField txt_hba1c;
     private javax.swing.JTextField txt_hba1c_2;

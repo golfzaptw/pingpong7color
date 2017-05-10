@@ -37,7 +37,6 @@ public class user extends javax.swing.JFrame {
 
         tab_user = new javax.swing.JTabbedPane();
         tab_status = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         username_login = new javax.swing.JLabel();
@@ -58,11 +57,6 @@ public class user extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jLabel1.setText("Kran Status : Save");
-        tab_status.add(jLabel1);
-
         tab_user.addTab("Status", tab_status);
 
         jTextArea1.setColumns(20);
@@ -117,7 +111,6 @@ public class user extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel tab_status;
