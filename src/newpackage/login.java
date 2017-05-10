@@ -5,7 +5,17 @@
  */
 package newpackage;
 
+import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -108,6 +118,7 @@ public class login extends javax.swing.JFrame {
     private void bnt_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnt_registerActionPerformed
         // TODO add your handling code here:
         new register().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_bnt_registerActionPerformed
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
@@ -115,9 +126,41 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_usernameActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        // TODO add your handling code here:
-
-        
+		String username = txt_username.getText();
+                String password = txt_password.getText();
+                ResultSet rs;
+		int s =CheckLogin(username, password);
+		if (s==1) {
+			ConnectDB conn =new ConnectDB();
+			rs = conn.SelectConnect("user WHERE username ='"+username+"' && password='"+password+"'");
+			try {
+				while (rs.next()){
+					System.out.println("-----------------------------------");
+					System.out.println(rs.getString("name"));
+                                    if (rs.getString("role").equalsIgnoreCase("1")) {
+                                        JOptionPane.showMessageDialog(null,rs.getString("name")+" Login Successfully");
+                                        AfterLogin afterLogin = new AfterLogin();
+                                        afterLogin.setUsername(rs.getString("username"));
+                                        afterLogin.setName(rs.getString("name"));
+                                        new user().setVisible(true);
+                                        this.dispose();
+                                    }else {
+                                        JOptionPane.showMessageDialog(null,rs.getString("name")+" Admin Login Successfully");
+                                        AfterLogin afterLogin = new AfterLogin();
+                                        afterLogin.setUsername(rs.getString("username"));
+                                        afterLogin.setName(rs.getString("name"));
+                                        new admin().setVisible(true);
+                                        this.dispose();
+                                    }
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                
+            
+        }
+                 
     }//GEN-LAST:event_btn_loginActionPerformed
 
     
@@ -149,5 +192,24 @@ public class login extends javax.swing.JFrame {
     private void initComponentls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+	public static int CheckLogin(String username , String password){
+		ConnectDB conn =new ConnectDB();
+		ResultSet rs = conn.SelectConnect("user WHERE username ='"+username+"' && password='"+password+"'");
+		
+		try {
+			if (!rs.next()) {
+				System.out.println("username or password has incorrect");
+				return 0;
+			}else {
+				System.out.println("Success");
+				return 1;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
+
+

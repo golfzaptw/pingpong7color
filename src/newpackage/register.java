@@ -119,26 +119,25 @@ public class register extends javax.swing.JFrame {
         ConnectDB db = new ConnectDB();
         
          try {
-            Class.forName(db.driverName);
             
-            Connection con=DriverManager.getConnection(db.url,db.user,db.pass);
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong","root","");
             System.err.println("ConnectComplete");
             
             Statement s = null; // ประกาศ statement
             s = con.createStatement();
             /***********/
-            String sql = "INSERT INTO user "+ "(username,password,name,surname) "
+            String sql = "INSERT INTO user "+ "(username,password,name,surname,role) "
 			+ "VALUES ('" + txt_username.getText() + "','"
 			+ field_password.getText()+ "','"
 			+ txt_name.getText() + "'" + ",'"
-			+ txt_surname.getText() + "'      ) ";
-					
-            
+			+ txt_surname.getText() + "','"
+			+ 1 + "'      ) ";            
             s.execute(sql);
 				
 					JOptionPane.showMessageDialog(null,"ทำรายการ Successfully");
                                         
                                         new login().setVisible(true);
+                                        this.dispose();
              /*********/
                                   
         } catch (Exception e) {

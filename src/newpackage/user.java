@@ -5,7 +5,11 @@
  */
 package newpackage;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static newpackage.login.CheckLogin;
 
 /**
  *
@@ -22,7 +26,9 @@ public class user extends javax.swing.JFrame {
                 setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(380, 10, 900, 500);
                 
-		setTitle("โปรแกรมลูกโปร่ง 7 สี");
+		setTitle("โปรแกรมลูกโปร่ง 7 สี"); 
+                AfterLogin afterLogin = new AfterLogin();
+                username_login.setText(afterLogin.getName());
 
     }
 
@@ -34,7 +40,8 @@ public class user extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        label_title = new javax.swing.JLabel();
+        username_login = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,6 +49,15 @@ public class user extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         tab_user.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tab_user.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tab_userAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
         jLabel1.setText("Kran Status : Save");
@@ -59,10 +75,14 @@ public class user extends javax.swing.JFrame {
         getContentPane().add(tab_user);
         tab_user.setBounds(30, 70, 830, 350);
 
-        label_title.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        label_title.setText("User : Kran");
-        getContentPane().add(label_title);
-        label_title.setBounds(30, 20, 130, 40);
+        username_login.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        getContentPane().add(username_login);
+        username_login.setBounds(110, 20, 130, 40);
+
+        username.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        username.setText("User :");
+        getContentPane().add(username);
+        username.setBounds(30, 20, 130, 40);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
@@ -72,6 +92,10 @@ public class user extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tab_userAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tab_userAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tab_userAncestorAdded
 
     
     public static void main(String args[]) {
@@ -96,14 +120,23 @@ public class user extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel label_title;
     private javax.swing.JPanel tab_status;
     private javax.swing.JScrollPane tab_suggestion;
     private javax.swing.JTabbedPane tab_user;
+    private javax.swing.JLabel username;
+    private javax.swing.JLabel username_login;
     // End of variables declaration//GEN-END:variables
 
     private void initComponentls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
+public  void datatoText(ResultSet rs){ // ฟังชั่นการ setค่า  ลงกล่องข้อความ
+    
+
+     
+
+}
 
 }

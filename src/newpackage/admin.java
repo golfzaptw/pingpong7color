@@ -23,7 +23,8 @@ public class admin extends javax.swing.JFrame {
 		setBounds(380, 10, 900, 500);
                 
 		setTitle("โปรแกรมลูกโปร่ง 7 สี");
-
+                AfterLogin afterLogin = new AfterLogin();
+                username_admin.setText(afterLogin.getName());
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,7 +34,8 @@ public class admin extends javax.swing.JFrame {
         label_fbs = new javax.swing.JLabel();
         label_user = new javax.swing.JLabel();
         txt_hba1c = new javax.swing.JTextField();
-        label_title = new javax.swing.JLabel();
+        username_admin = new javax.swing.JLabel();
+        label_title1 = new javax.swing.JLabel();
         label_bp = new javax.swing.JLabel();
         txt_bp = new javax.swing.JTextField();
         txt_hba1c_2 = new javax.swing.JTextField();
@@ -83,10 +85,14 @@ public class admin extends javax.swing.JFrame {
         getContentPane().add(txt_hba1c);
         txt_hba1c.setBounds(150, 200, 80, 30);
 
-        label_title.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        label_title.setText("Admin");
-        getContentPane().add(label_title);
-        label_title.setBounds(30, 20, 130, 40);
+        username_admin.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        getContentPane().add(username_admin);
+        username_admin.setBounds(130, 20, 130, 40);
+
+        label_title1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        label_title1.setText("Admin :");
+        getContentPane().add(label_title1);
+        label_title1.setBounds(30, 20, 130, 40);
 
         label_bp.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         label_bp.setText("BP :");
@@ -195,7 +201,7 @@ public class admin extends javax.swing.JFrame {
     private javax.swing.JLabel label_fbs;
     private javax.swing.JLabel label_hba1c;
     private javax.swing.JLabel label_suggestion;
-    private javax.swing.JLabel label_title;
+    private javax.swing.JLabel label_title1;
     private javax.swing.JLabel label_user;
     private javax.swing.JPanel member_status;
     private javax.swing.JButton submit;
@@ -204,6 +210,7 @@ public class admin extends javax.swing.JFrame {
     private javax.swing.JTextField txt_hba1c;
     private javax.swing.JTextField txt_hba1c_2;
     private javax.swing.JTextArea txt_suggestion;
+    private javax.swing.JLabel username_admin;
     // End of variables declaration//GEN-END:variables
 
     private void initComponentls() {
