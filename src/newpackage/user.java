@@ -5,6 +5,8 @@
  */
 package newpackage;
 
+import java.awt.Color;
+import java.awt.Container;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,8 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class user extends javax.swing.JFrame {
 
-   
-
+  
+    
     
     public user() {
         initComponents();
@@ -38,8 +41,7 @@ public class user extends javax.swing.JFrame {
     private void initComponents() {
 
         tab_user = new javax.swing.JTabbedPane();
-        tab_status = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         label_title = new javax.swing.JLabel();
@@ -60,11 +62,12 @@ public class user extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jLabel1.setText("Kran Status : Save");
-        tab_status.add(jLabel1);
-
-        tab_user.addTab("Status", tab_status);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        tab_user.addTab("Status", jTextField1);
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -74,12 +77,12 @@ public class user extends javax.swing.JFrame {
         tab_user.addTab("Suggestion", tab_suggestion);
 
         getContentPane().add(tab_user);
-        tab_user.setBounds(30, 70, 830, 350);
+        tab_user.setBounds(30, 50, 840, 390);
 
         label_title.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         label_title.setText("User : Kran");
         getContentPane().add(label_title);
-        label_title.setBounds(30, 20, 130, 40);
+        label_title.setBounds(30, 10, 130, 40);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setForeground(new java.awt.Color(255, 102, 0));
@@ -94,10 +97,14 @@ public class user extends javax.swing.JFrame {
         
       
       ShowData(); // run  ฟังชัน ShowData();
-        
+     
         
         
     }//GEN-LAST:event_tab_userAncestorAdded
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     
     public static void main(String args[]) {
@@ -125,11 +132,10 @@ public class user extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel label_title;
-    private javax.swing.JPanel tab_status;
     private javax.swing.JScrollPane tab_suggestion;
     private javax.swing.JTabbedPane tab_user;
     // End of variables declaration//GEN-END:variables
@@ -144,16 +150,28 @@ public class user extends javax.swing.JFrame {
                                        
             try {
          
-            String sql = " select * from datauser ";
+            String sql = " select * from datauser2 "; 
             Connection c=connectDB();
             ResultSet rs=c.createStatement().executeQuery(sql);
             
-            rs.first();
+            rs.first(); // การเรียกเฉพาะข้อมูลตัวแรก
             datatoText(rs);
+             showedatacolor(rs);
+            
+            
+            
+           // while (rs.next()) {  //
+               
+                 // System.out.println(rs.getString("name"));  // 
+                  
+                    
+                //}
+            
+            
                                   
         } catch (Exception e) {
             
-            System.out.println(e.getMessage());
+   
         }
                          
     
@@ -178,7 +196,7 @@ public class user extends javax.swing.JFrame {
             Connection con=DriverManager.getConnection(url,user,pass);
             System.err.println("ConnectComplete");
             
-            Statement s = null; // ประกาศ statement
+            Statement s = null; 
             s = con.createStatement();
             
            return con;
@@ -195,15 +213,61 @@ public class user extends javax.swing.JFrame {
 public  void datatoText(ResultSet rs){ // ฟังชั่นการ setค่า  ลงกล่องข้อความ
     
      try{
-    
-    jTextArea1.setText(rs.getString(1)); // การ setลงกล่องข้อความ
-    
+         
+    jTextArea1.setText(rs.getString("suggestion")); // การ setลงกล่องข้อความ
+   
     } catch(Exception e){
     
     }
      
 
 }
+
+
+public  void  showedatacolor(ResultSet rs){
+   try{
+       
+       
+   
+       System.out.println("test:"+rs.getString("ststus"));
+       String sta = null;
+      
+       
+           
+
+       
+       
+    String name = rs.getString("ststus");
+    if(name.equals("red")){
+    
+                ShapeFactory shapeFactory = new ShapeFactory();
+                JPanel shape1 = shapeFactory.getShape("Circle");
+		shape1.setSize(500, 700);
+                
+                 
+		jTextField1.add(shape1);
+		shape1.setVisible(true);
+             	jTextField1.setBackground(Color.WHITE);
+		
+              
+  
+             
+		
+
+             
+    }else{
+    
+    }
+
+    } catch(Exception e){
+    
+    }
+
+}
+
+     
+  
+
 
 
 
