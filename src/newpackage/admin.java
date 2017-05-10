@@ -74,6 +74,7 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        logout = new java.awt.Button();
         submit = new javax.swing.JButton();
         label_fbs = new javax.swing.JLabel();
         label_user = new javax.swing.JLabel();
@@ -102,6 +103,16 @@ public class admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 0));
         getContentPane().setLayout(null);
+
+        logout.setActionCommand("Logout");
+        logout.setLabel("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logout);
+        logout.setBounds(770, 10, 90, 40);
 
         submit.setBackground(new java.awt.Color(51, 204, 255));
         submit.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
@@ -194,7 +205,6 @@ public class admin extends javax.swing.JFrame {
         label_suggestion.setBounds(50, 240, 90, 30);
 
         cbb_user.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        cbb_user.setForeground(new java.awt.Color(0, 0, 0));
         cbb_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbb_userActionPerformed(evt);
@@ -298,6 +308,12 @@ public class admin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbb_userActionPerformed
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -323,6 +339,7 @@ public class admin extends javax.swing.JFrame {
     private javax.swing.JLabel label_suggestion;
     private javax.swing.JLabel label_title1;
     private javax.swing.JLabel label_user;
+    private java.awt.Button logout;
     private javax.swing.JPanel member_status;
     private javax.swing.JLabel show_status;
     private javax.swing.JButton submit;

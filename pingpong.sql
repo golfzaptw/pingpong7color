@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2017 at 01:52 PM
+-- Generation Time: May 10, 2017 at 06:36 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -87,7 +87,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `surname`, `role`, `sick_type`, `suggestion`) VALUES
 (1, 'gg', '123', 'gg123', '456', 1, 4, 'fedfdsfdsfds'),
-(2, 'admin', 'admin', 'ADMIN', '', 2, NULL, '12123213');
+(2, 'admin', 'admin', 'ADMIN', '', 2, NULL, '12123213'),
+(3, 'net', '123', 'netnarhee', '123', 1, 6, 'dasdsadxxx21321');
 
 --
 -- Indexes for dumped tables
@@ -131,7 +132,7 @@ ALTER TABLE `sick_ness`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- Constraints for dumped tables
 --

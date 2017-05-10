@@ -57,6 +57,7 @@ public class user extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        logout = new java.awt.Button();
         username_login = new javax.swing.JLabel();
         username = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -82,9 +83,7 @@ public class user extends javax.swing.JFrame {
         jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
-        jTextArea1.setCaretColor(new java.awt.Color(0, 0, 0));
         jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextArea1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
@@ -94,6 +93,16 @@ public class user extends javax.swing.JFrame {
 
         getContentPane().add(tab_user);
         tab_user.setBounds(100, 80, 710, 330);
+
+        logout.setActionCommand("Logout");
+        logout.setLabel("Logout");
+        logout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logout);
+        logout.setBounds(700, 20, 100, 50);
 
         username_login.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         getContentPane().add(username_login);
@@ -117,6 +126,12 @@ public class user extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tab_userAncestorAdded
 
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        // TODO add your handling code here:
+        new login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_logoutActionPerformed
+
     public static void main(String args[]) {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -133,6 +148,7 @@ public class user extends javax.swing.JFrame {
     public javax.swing.JLabel jLabel2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
+    private java.awt.Button logout;
     private javax.swing.JScrollPane tab_suggestion;
     private javax.swing.JTabbedPane tab_user;
     private javax.swing.JLabel username;
@@ -141,10 +157,6 @@ public class user extends javax.swing.JFrame {
 
     private void initComponentls() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void datatoText(ResultSet rs) { // ฟังชั่นการ setค่า  ลงกล่องข้อความ
-
     }
 
 }
