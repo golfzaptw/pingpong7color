@@ -42,7 +42,6 @@ public class user extends javax.swing.JFrame {
                                 String st = rs.getString("sick_type");
                                 JPanel jp = sc.GetColor_sick(Integer.parseInt(st), this, 50, 50);
                                 jTextField1.add(jp);
-                                
                                 jTextField1.setEnabled(false);
                                 jTextArea1.setEditable(false);
 				}
