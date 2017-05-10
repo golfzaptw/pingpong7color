@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import static newpackage.login.CheckLogin;
 
 /**
@@ -39,8 +40,11 @@ public class user extends javax.swing.JFrame {
 				while (rs.next()){
 				jTextArea1.setText(rs.getString("suggestion"));
                                 String st = rs.getString("sick_type");
-                               
+                                JPanel jp = sc.GetColor_sick(Integer.parseInt(st), this, 50, 50);
+                                jTextField1.add(jp);
                                 
+                                jTextField1.setEnabled(false);
+                                jTextArea1.setEditable(false);
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -54,7 +58,7 @@ public class user extends javax.swing.JFrame {
     private void initComponents() {
 
         tab_user = new javax.swing.JTabbedPane();
-        tab_status = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
         tab_suggestion = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         username_login = new javax.swing.JLabel();
@@ -75,7 +79,7 @@ public class user extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        tab_user.addTab("Status", tab_status);
+        tab_user.addTab("Status", jTextField1);
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
@@ -85,7 +89,7 @@ public class user extends javax.swing.JFrame {
         tab_user.addTab("Suggestion", tab_suggestion);
 
         getContentPane().add(tab_user);
-        tab_user.setBounds(30, 70, 830, 350);
+        tab_user.setBounds(160, 60, 650, 350);
 
         username_login.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         getContentPane().add(username_login);
@@ -131,7 +135,7 @@ public class user extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel jLabel2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JPanel tab_status;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane tab_suggestion;
     private javax.swing.JTabbedPane tab_user;
     private javax.swing.JLabel username;
