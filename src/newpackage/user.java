@@ -38,7 +38,7 @@ public class user extends javax.swing.JFrame {
             while (rs.next()) {
                 jTextArea1.setText(rs.getString("suggestion"));
                 String st = rs.getString("sick_type");
-                JPanel jp = sc.GetColor_sick(Integer.parseInt(st), this, 50, 50);
+                JPanel jp = sc.GetColor_sick(Integer.parseInt(st), this, 240, 30);
                 jTextField1.add(jp);
                 jTextField1.setEnabled(false);
                 jTextArea1.setEnabled(false);
@@ -79,9 +79,15 @@ public class user extends javax.swing.JFrame {
         jTextField1.setBackground(new java.awt.Color(0, 0, 0));
         tab_user.addTab("Status", jTextField1);
 
+        jTextArea1.setBackground(new java.awt.Color(204, 204, 204));
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 16)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
+        jTextArea1.setCaretColor(new java.awt.Color(0, 0, 0));
+        jTextArea1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea1.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
         tab_suggestion.setViewportView(jTextArea1);
 
         tab_user.addTab("Suggestion", tab_suggestion);

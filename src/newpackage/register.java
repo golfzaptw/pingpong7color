@@ -38,7 +38,6 @@ public class register extends javax.swing.JFrame {
         label_username = new javax.swing.JLabel();
         txt_username = new javax.swing.JTextField();
         field_password = new javax.swing.JPasswordField();
-        label_title = new javax.swing.JLabel();
         label_name = new javax.swing.JLabel();
         txt_name = new javax.swing.JTextField();
         txt_surname = new javax.swing.JTextField();
@@ -81,11 +80,6 @@ public class register extends javax.swing.JFrame {
         field_password.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         getContentPane().add(field_password);
         field_password.setBounds(510, 170, 300, 40);
-
-        label_title.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        label_title.setText("Register");
-        getContentPane().add(label_title);
-        label_title.setBounds(510, 50, 130, 40);
 
         label_name.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         label_name.setText("Name :");
@@ -185,7 +179,6 @@ public class register extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel label_name;
     private javax.swing.JLabel label_password;
-    private javax.swing.JLabel label_title;
     private javax.swing.JLabel label_username;
     private javax.swing.JButton submit;
     private javax.swing.JTextField txt_name;

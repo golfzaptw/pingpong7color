@@ -268,29 +268,16 @@ public class admin extends javax.swing.JFrame {
 
             c.GetColor_sick(color_user, member_status);
 
-                  ShapeNColor sc = new ShapeNColor();
-        ConnectDB conn = new ConnectDB();
-        
-        
-            
-             rs = conn.SelectConnect("user WHERE name ='" + username + "'");
-          
-                //jTextArea1.setText(rs.getString("suggestion"));
-             
-                JPanel jpp = sc.GetColor_sick(color_user, this, 50, 50);
-                jTextField1.add(jpp);
-                jTextField1.setEnabled(false);
-                
-            /*ConnectDB db = new ConnectDB();
-            AfterLogin afterLogin = new AfterLogin();
-            ResultSet rs;
-            rs = db.SelectConnect("user WHERE username ='"+afterLogin.getName()+"'");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong","root","");
-            Statement s = null; // ประกาศ statement
-            s = con.createStatement();
-            String sql = "update user set suggestion = "+txt_suggestion.getText()+" where id ="+afterLogin.getId(); 
-            s.execute(sql);
-            JOptionPane.showMessageDialog(null,"ทำรายการ Successfully");*/
+            ShapeNColor sc = new ShapeNColor();
+            ConnectDB conn = new ConnectDB();
+
+            rs = conn.SelectConnect("user WHERE name ='" + username + "'");
+
+            //jTextArea1.setText(rs.getString("suggestion"));
+            JPanel jpp = sc.GetColor_sick(color_user, this, 60, 60);
+            jTextField1.add(jpp);
+            jTextField1.setEnabled(false);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error = " + e);
             txt_fbs.setText("");
@@ -299,9 +286,6 @@ public class admin extends javax.swing.JFrame {
             txt_hba1c_2.setText("");
             txt_suggestion.setText("");
         }
-        //วาดรูป
-  
-       
 
     }//GEN-LAST:event_submitActionPerformed
 
