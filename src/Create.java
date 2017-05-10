@@ -10,14 +10,14 @@ public class Create {
 	public void createData(String id,String status){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong","root","");
+			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong?useUnicode=yes&characterEncoding=UTF-8","root","");
 		   
 		    Statement s = null;
 		    s = conn.createStatement();
 		   
 		   if (s.execute("UPDATE user SET sick_type='"+status+"' WHERE id = "+id)) {
-			System.out.println("ÁÖ§àÊ×Í¡¼Ô´·ÕèÅÐ¤ÇÂ¶Í¡");
-		}else {System.out.println("ä´éÅÐÍÔ´Í¡");}
+			System.out.println("ï¿½Ö§ï¿½ï¿½ï¿½Í¡ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Ð¤ï¿½Â¶Í¡");
+		}else {System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Í¡");}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,15 +3,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 
 public class ConnectDB {
-	
+
 	public ResultSet SelectConnect(String collum) {
+		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong","root","");
+			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong?useUnicode=yes&characterEncoding=UTF-8","root","");
 		    System.out.println("Yeddddddd");
 		    Statement s = null;
 		    s = conn.createStatement();
