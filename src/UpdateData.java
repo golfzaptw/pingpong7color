@@ -8,7 +8,7 @@ import com.mysql.jdbc.Connection;
 
 public class UpdateData {
 
-	public void LetUp(String cmd, String status, String id) {
+	public void LetUp(String cmd, String status, String name) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/pingpong", "root", "");
@@ -16,7 +16,7 @@ public class UpdateData {
 			Statement s = null;
 			s = conn.createStatement();
 
-			if (s.execute("UPDATE user SET sick_type='" + status + "',Commend='" + cmd + "' WHERE id = " + id)) {
+			if (s.execute("UPDATE user SET sick_type='" + status + "',Commend='" + cmd + "' WHERE id = " + name)) {
 
 			} else {
 				System.out.println("ä´éÅÐ´Í¡¡¡¡¡¡¡");
