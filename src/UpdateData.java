@@ -16,7 +16,7 @@ public class UpdateData {
 			Statement s = null;
 			s = conn.createStatement();
 
-			if (s.execute("UPDATE user SET sick_type='" + status + "',Commend='" + cmd + "' WHERE name = " + name)) {
+			if (s.execute("UPDATE user SET sick_type='" + status + "',Commend='" + cmd + "' WHERE name = '" + name+"'")) {
 
 			} else {
 				System.out.println("ä´éÅÐ´Í¡¡¡¡¡¡¡");
